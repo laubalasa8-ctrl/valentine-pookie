@@ -59,6 +59,7 @@ function showSuccess() {
     videoElement.style.width = '100%';
     videoElement.style.borderRadius = '15px';
     videoElement.style.marginBottom = '20px';
+    videoElement.style.backgroundColor = '#000';
     videoElement.autoplay = true;
     videoElement.muted = true;
     videoElement.loop = true;
@@ -69,7 +70,15 @@ function showSuccess() {
     source.type = 'video/mp4';
     videoElement.appendChild(source);
     
+    // Fallback text
+    videoElement.textContent = 'Din webbläsare stöder inte videouppspelning';
+    
     document.querySelector('.card').appendChild(videoElement);
+    
+    // Försök att spela videon
+    videoElement.play().catch(function(error) {
+        console.log('Videouppspelning misslyckades:', error);
+    });
     
     const arrowContainer = document.createElement('div');
     arrowContainer.className = 'arrow-container';
