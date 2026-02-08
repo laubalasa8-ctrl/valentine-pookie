@@ -66,7 +66,7 @@ function showSuccess() {
     videoElement.playsInline = true;
     
     const source = document.createElement('source');
-    source.src = 'piki.MP4';
+    source.src = 'Piki.MP4';
     source.type = 'video/mp4';
     videoElement.appendChild(source);
     
