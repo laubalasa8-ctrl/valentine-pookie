@@ -59,9 +59,10 @@ function showSuccess() {
     videoElement.style.width = '100%';
     videoElement.style.borderRadius = '15px';
     videoElement.style.marginBottom = '20px';
-    videoElement.controls = true;
     videoElement.autoplay = true;
+    videoElement.muted = true;
     videoElement.loop = true;
+    videoElement.playsInline = true;
     
     const source = document.createElement('source');
     source.src = 'piki.MP4';
