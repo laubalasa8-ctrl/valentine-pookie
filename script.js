@@ -73,15 +73,22 @@ function showSuccess() {
     source.type = 'video/mp4';
     videoElement.appendChild(source);
     
-    // Fallback text
-    videoElement.textContent = 'Din webbläsare stöder inte videouppspelning';
+    videoElement.onerror = function() {
+        console.error('Videofil kunde inte laddas');
+        videoElement.style.display = 'none';
+        const errorMsg = document.createElement('div');
+        errorMsg.style.width = '100%';
+        errorMsg.style.backgroundColor = '#fff';
+        errorMsg.style.padding = '20px';
+        errorMsg.style.borderRadius = '15px';
+        errorMsg.style.marginBottom = '20px';
+        errorMsg.style.textAlign = 'center';
+        errorMsg.style.color = '#764ba2';
+        errorMsg.textContent = '💕 Vår video är på vägen... 💕';
+        document.querySelector('.card').appendChild(errorMsg);
+    };
     
     document.querySelector('.card').appendChild(videoElement);
-    
-    // Försök att spela videon
-    videoElement.play().catch(function(error) {
-        console.log('Videouppspelning misslyckades:', error);
-    });
     
     const arrowContainer = document.createElement('div');
     arrowContainer.className = 'arrow-container';
