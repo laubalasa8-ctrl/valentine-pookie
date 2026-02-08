@@ -57,9 +57,12 @@ function showSuccess() {
     const videoElement = document.createElement('video');
     videoElement.className = 'success-video';
     videoElement.style.width = '100%';
+    videoElement.style.height = 'auto';
+    videoElement.style.minHeight = '250px';
     videoElement.style.borderRadius = '15px';
     videoElement.style.marginBottom = '20px';
     videoElement.style.backgroundColor = '#000';
+    videoElement.style.display = 'block';
     videoElement.autoplay = true;
     videoElement.muted = true;
     videoElement.loop = true;
