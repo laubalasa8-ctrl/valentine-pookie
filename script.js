@@ -61,12 +61,32 @@ function showSuccess() {
     videoElement.style.minHeight = '250px';
     videoElement.style.borderRadius = '15px';
     videoElement.style.marginBottom = '20px';
-    videoElement.style.backgroundColor = '#f5576c';
-    videoElement.style.display = 'flex';
-    videoElement.style.alignItems = 'center';
-    videoElement.style.justifyContent = 'center';
-    videoElement.style.fontSize = '100px';
-    videoElement.textContent = '❤️';
+    videoElement.style.backgroundColor = '#000';
+    videoElement.style.display = 'block';
+    videoElement.autoplay = true;
+    videoElement.muted = true;
+    videoElement.loop = true;
+    videoElement.playsInline = true;
+    
+    const source = document.createElement('source');
+    source.src = 'Piki.MP4';
+    source.type = 'video/mp4';
+    videoElement.appendChild(source);
+    
+    videoElement.onerror = function() {
+        console.error('Videofil kunde inte laddas');
+        videoElement.style.display = 'none';
+        const errorMsg = document.createElement('div');
+        errorMsg.style.width = '100%';
+        errorMsg.style.backgroundColor = '#fff';
+        errorMsg.style.padding = '20px';
+        errorMsg.style.borderRadius = '15px';
+        errorMsg.style.marginBottom = '20px';
+        errorMsg.style.textAlign = 'center';
+        errorMsg.style.color = '#764ba2';
+        errorMsg.textContent = '💕 Vår video är på vägen... 💕';
+        document.querySelector('.card').appendChild(errorMsg);
+    };
     
     document.querySelector('.card').appendChild(videoElement);
     
