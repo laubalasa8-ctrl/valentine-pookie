@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Skapa stjärnor i bakgrunden
+    createBackgroundStars();
+    
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
     let noClickCount = 0;
@@ -149,9 +152,22 @@ function createFallingHearts() {
             heart.textContent = '❤️';
             heart.style.left = Math.random() * 100 + '%';
             heart.style.animationDelay = Math.random() * 0.5 + 's';
+            heart.style.fontSize = Math.random() * 20 + 30 + 'px';
             document.body.appendChild(heart);
             
             setTimeout(() => heart.remove(), 3500);
         }, i * 30);
+    }
+}
+
+function createBackgroundStars() {
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        starsContainer.appendChild(star);
     }
 }

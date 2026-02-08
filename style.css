@@ -12,6 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     animation: gradientShift 8s ease infinite;
+    position: relative;
+    overflow: hidden;
 }
 
 @keyframes gradientShift {
@@ -23,12 +25,39 @@ body {
     }
 }
 
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .card {
@@ -42,6 +71,8 @@ body {
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -121,6 +152,10 @@ h1 {
     animation: heartbeat 1.5s ease-in-out infinite;
     font-weight: 700;
     letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 @media (max-width: 768px) {
@@ -178,6 +213,25 @@ h1 {
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+    border-radius: 50px;
+    z-index: 1;
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 @media (max-width: 768px) {
@@ -191,22 +245,30 @@ h1 {
 .btn-yes {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     color: white;
+    position: relative;
+    z-index: 2;
 }
 
 .btn-yes:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(245, 87, 108, 0.5);
+}
+
+.btn-yes:active {
+    transform: scale(0.98);
 }
 
 .btn-no {
     background: #ccc;
     color: #333;
     position: relative;
+    transition: all 0.2s ease;
 }
 
 .btn-no:hover {
     background: #bbb;
-    transform: scale(0.95);
+    transform: scale(0.92);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .success-message {
@@ -215,6 +277,9 @@ h1 {
     font-size: 1.5em;
     color: #f5576c;
     animation: celebration 1s ease-out;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px) {
